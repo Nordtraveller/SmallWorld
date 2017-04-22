@@ -9,10 +9,10 @@ public class UnitScript : MonoBehaviour {
 
     public bool selected = false;
     public float moveSpeed;
+    public float rotationSpeed = 0.001f;
     public Vector2 destination;
     public double maxPositionAndDestinationOffset;
-    public int unitID = 0; // this is ID of group of ants united by target (for example going to the same point on map)
-
+    public double rotationToleration = 0.01;
 
     private bool active = false; // ant is moving OR just selected
     private Vector2 direction;
@@ -48,6 +48,7 @@ public class UnitScript : MonoBehaviour {
 
     private void ControlGameObjectMovement()
     {
+
         if (active)
         {
             direction = (destination - (Vector2)(gameObject.transform.position)).normalized;
@@ -58,7 +59,21 @@ public class UnitScript : MonoBehaviour {
 
             if (active) gameObject.GetComponent<Rigidbody2D>().velocity = direction * moveSpeed;
             else gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+           // transform.rotation = Quaternion.Euler(0, 0, angle+90);
+
+            // płynne obracanie
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle+90), rotationSpeed * Time.deltaTime);
+
+
+            Debug.Log((Vector3)destination);
+
         }
+
+
 
     }
 
