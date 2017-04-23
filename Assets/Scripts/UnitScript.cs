@@ -20,6 +20,9 @@ public class UnitScript : MonoBehaviour
     public FoodScript foodOnBack = null;
     private int resources = 0;
 
+    [SerializeField]
+    private SpriteRenderer dziecko;
+
     private bool active = false; // ant is moving OR just selected
     private Vector2 direction;
 
@@ -41,23 +44,26 @@ public class UnitScript : MonoBehaviour
             }
         }
 
-        if (selected)
+        if (this.tag == "Black")
         {
-            GetComponent<Renderer>().material.color = Color.red;
-        }
-        else
-        {
-            GetComponent<Renderer>().material.color = Color.white;
-        }
-
-        if (Input.GetMouseButtonUp(1) && selected)
-        {
-            destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            active = true;
+            if (selected)
+            {
+                dziecko.enabled = true;
+            }
+            else
+            {
+                dziecko.enabled = false;
+            }
         }
 
-        ControlGameObjectMovement();
-    }
+            if (Input.GetMouseButtonUp(1) && selected)
+            {
+                destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                active = true;
+            }
+
+            ControlGameObjectMovement();
+        }
 
     private void ControlGameObjectMovement()
     {
