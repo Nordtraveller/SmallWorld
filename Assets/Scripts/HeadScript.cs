@@ -26,10 +26,11 @@ public class HeadScript : MonoBehaviour {
     {
         if (col.gameObject.tag != this.tag)
         {
-            if (attacking)
+            UnitScript colUnitScript = col.gameObject.GetComponent<UnitScript>();
+            if (attacking && colUnitScript!=null)
             {
                 Debug.Log("I attacked");
-                col.gameObject.GetComponent<UnitScript>().DecreaseHP(dmg);
+                colUnitScript.DecreaseHP(dmg);
                 attacking = false;
             }
         }

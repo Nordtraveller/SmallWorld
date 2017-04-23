@@ -16,10 +16,12 @@ public class UnitScript : MonoBehaviour
     public Vector2 destination;
     public double maxPositionAndDestinationOffset;
     public double rotationToleration = 0.01;
+    public bool hasResource = false;
+    public FoodScript foodOnBack = null;
+    private int resources = 0;
 
     private bool active = false; // ant is moving OR just selected
     private Vector2 direction;
-
 
     // Update is called once per frame
     void Update()
@@ -72,8 +74,28 @@ public class UnitScript : MonoBehaviour
         hitPoints -= dmg;
         Debug.Log("Damage Applied");
         if (hitPoints <= 0)
-        {
             Destroy(this.gameObject);
-        }
+        
     }
+
+    public void OnCollisionEnter2D(Collision2D col)
+    {
+        Debug.Log("Mrowka wziela zarcie!");
+    }
+
+    public void AddResources(int value)
+    {
+        resources += value;
+    }
+
+    public int TakeResources()
+    {
+        int r = resources;
+        resources = 0;
+        hasResource = false;
+        Destroy(foodOnBack.gameObject);
+        foodOnBack = null; 
+        return r;
+    }
+
 }
