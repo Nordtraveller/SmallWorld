@@ -26,7 +26,7 @@ public class BaseScript : MonoBehaviour {
         if (unit == null) return;
         bool hasResource = unit.hasResource;
 
-        if (c.gameObject.tag == "Black" && hasResource)
+        if ((c.gameObject.tag == gameObject.tag) && hasResource)
             AddResources(unit.TakeResources());
     }
 
