@@ -9,9 +9,8 @@ public class RandomObjectSpawner : MonoBehaviour
     public float areaHeight;
     public List<GameObject> prefabsToSpawn;
     public float spawnInterval; // For now It'll be constant interval, but it should be quite easy to set interval up to random value from some range.
-
-    private Vector3 nextSpawnPoint;
-    private float timeCounter = 0;
+    protected Vector3 nextSpawnPoint;
+    protected float timeCounter = 0;
 
     void Start ()
     {
@@ -38,7 +37,7 @@ public class RandomObjectSpawner : MonoBehaviour
         timeCounter = spawnInterval;
 	}
 
-    private Vector3 getRandomPoint()
+    protected Vector3 getRandomPoint()
     {
         float randomX, randomY;
 

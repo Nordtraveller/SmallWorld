@@ -77,6 +77,7 @@ public class UnitScript : MonoBehaviour
         hitPoints -= dmg;
         Debug.Log("Damage Applied");
         if (hitPoints <= 0)
+          Destroy(this.gameObject);      
     }
 
     public void OnCollisionEnter2D(Collision2D col)
@@ -101,8 +102,12 @@ public class UnitScript : MonoBehaviour
 
     private void OnMouseDown()
     {
-        clickSelect = true;
-        selected = true;
+        if(gameObject.tag == "Black")
+        {
+            clickSelect = true;
+            selected = true;
+        }
+
     }
 
     private void OnMouseUp()
