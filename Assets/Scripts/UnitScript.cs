@@ -77,8 +77,7 @@ public class UnitScript : MonoBehaviour
         hitPoints -= dmg;
         Debug.Log("Damage Applied");
         if (hitPoints <= 0)
-            Destroy(this.gameObject);
-        
+            Destroy(this.gameObject);      
     }
 
     public void OnCollisionEnter2D(Collision2D col)
