@@ -46,7 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\BaseHealthManager.cs" />
+     <Compile Include="Assets\Scripts\BaseHealthManager.cs" />
      <Compile Include="Assets\Scripts\BaseScript.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CameraScript.cs" />
@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\HeadScript.cs" />
      <Compile Include="Assets\Scripts\RandomObjectSpawner.cs" />
      <Compile Include="Assets\Scripts\SpawnOnNiewiem.cs" />
+     <Compile Include="Assets\Scripts\UIController.cs" />
      <Compile Include="Assets\Scripts\UnitScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

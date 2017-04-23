@@ -9,6 +9,8 @@ public class BaseScript : MonoBehaviour {
 
     public static Rect resGUI = new Rect(10, 10, 50, 50); // hehe, nie uzywam ]:->
 
+    public Canvas gameOverScreen;
+
     void OnGUI()
     {
        if(gameObject.tag == "Black") GUI.Label(new Rect(10, 10, 100, 50), "Zasoby: " + resources.ToString());
@@ -38,6 +40,12 @@ public class BaseScript : MonoBehaviour {
     public void TakeDamage(int strength)
     {
         hitPoints -= strength;
-        if (hitPoints <= 0) Destroy(gameObject.transform.parent.gameObject);
+        if (hitPoints <= 0)
+        {
+            gameOverScreen.gameObject.SetActive(true);
+            Destroy(gameObject.transform.parent.gameObject);
+        }
+
+
     }
 }
