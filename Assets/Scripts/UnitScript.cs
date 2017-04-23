@@ -8,9 +8,9 @@ public class UnitScript : MonoBehaviour
 
     //public static int numberOfUnits = 0;
     public int hitPoints = 5;
-    public string team = "black";
 
     public bool selected = false;
+    private bool clickSelect = false;
     public float moveSpeed;
     public float rotationSpeed = 0.001f;
     public Vector2 destination;
@@ -26,11 +26,14 @@ public class UnitScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GetComponent<Renderer>().isVisible && Input.GetMouseButtonUp(0))
+        if (GetComponent<Renderer>().isVisible && Input.GetMouseButton(0))
         {
-            Vector2 camPosition = Camera.main.WorldToScreenPoint(transform.position);
-            camPosition.y = CameraScript.InvertY(camPosition.y);
-            selected = CameraScript.selection.Contains(camPosition);
+            if(!clickSelect)
+            {
+                Vector2 camPosition = Camera.main.WorldToScreenPoint(transform.position);
+                camPosition.y = CameraScript.InvertY(camPosition.y);
+                selected = CameraScript.selection.Contains(camPosition);
+            }
         }
 
         if (selected)
@@ -97,5 +100,20 @@ public class UnitScript : MonoBehaviour
         foodOnBack = null; 
         return r;
     }
+
+    private void OnMouseDown()
+    {
+        clickSelect = true;
+        selected = true;
+    }
+
+    private void OnMouseUp()
+    {
+        if(clickSelect)
+        {
+            selected = true;
+        }
+        clickSelect = false;
+    } 
 
 }
