@@ -21,7 +21,7 @@ public class BaseHealthManager : MonoBehaviour {
 
         if (isEnemyAndAnt(col.gameObject))
         {
-            myBase.TakeDamage(1);
+            myBase.TakeDamage(col.gameObject.GetComponent<HeadScript>().dmg);
         }
 
         timer = timeBetweenHits;

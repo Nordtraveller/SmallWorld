@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\BaseScript.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CameraScript.cs" />
+    <Compile Include="Assets\Scripts\DetectAndTrack.cs" />
     <Compile Include="Assets\Scripts\FoodScript.cs" />
     <Compile Include="Assets\Scripts\HeadScript.cs" />
     <Compile Include="Assets\Scripts\RandomObjectSpawner.cs" />

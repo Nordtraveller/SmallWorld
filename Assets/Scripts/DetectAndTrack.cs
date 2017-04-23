@@ -27,7 +27,6 @@ public class DetectAndTrack : MonoBehaviour {
 
     void Update()
     {
-
         if (trackedObject == null) trackedObject = enemyBase;
         unit.GoToPoint(trackedObject.transform.position);
     }

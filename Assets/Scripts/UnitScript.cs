@@ -7,7 +7,7 @@ public class UnitScript : MonoBehaviour
 {
 
     public int hitPoints = 5;
-
+    Animator anim;
     public bool selected = false;
     private bool clickSelect = false;
     public float moveSpeed;
@@ -19,8 +19,16 @@ public class UnitScript : MonoBehaviour
     public FoodScript foodOnBack = null;
     private int resources = 0;
 
+    [SerializeField]
+    private SpriteRenderer dziecko;
+
     private bool active = false; // ant is moving OR just selected
     private Vector2 direction;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -35,23 +43,26 @@ public class UnitScript : MonoBehaviour
             }
         }
 
-        if (selected)
+        if (this.tag == "Black")
         {
-            GetComponent<Renderer>().material.color = Color.red;
-        }
-        else
-        {
-            GetComponent<Renderer>().material.color = Color.white;
-        }
-
-        if (Input.GetMouseButtonUp(1) && selected)
-        {
-            destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            active = true;
+            if (selected)
+            {
+                dziecko.enabled = true;
+            }
+            else
+            {
+                dziecko.enabled = false;
+            }
         }
 
-        ControlGameObjectMovement();
-    }
+            if (Input.GetMouseButtonUp(1) && selected)
+            {
+                destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                active = true;
+            }
+
+            ControlGameObjectMovement();
+        }
 
     private void ControlGameObjectMovement()
     {
@@ -68,6 +79,13 @@ public class UnitScript : MonoBehaviour
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle + 90), rotationSpeed * Time.deltaTime);
+            anim.SetBool("Idle", false);
+            anim.SetBool("Move", true);       
+        }
+        else
+        {
+            anim.SetBool("Move", false);
+            anim.SetBool("Idle", true);
         }
     }
 
@@ -80,11 +98,6 @@ public class UnitScript : MonoBehaviour
             Destroy(this.gameObject);
         }
    
-    }
-
-    public void OnCollisionEnter2D(Collision2D col)
-    {
-        Debug.Log("Mrowka wziela zarcie!");
     }
 
     public void AddResources(int value)
@@ -110,7 +123,6 @@ public class UnitScript : MonoBehaviour
             clickSelect = true;
             selected = true;
         }
-
     }
 
     private void OnMouseUp()
