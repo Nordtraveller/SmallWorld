@@ -8,7 +8,7 @@ public class UnitScript : MonoBehaviour
 
     //public static int numberOfUnits = 0;
     public int hitPoints = 5;
-
+    Animator anim;
     public bool selected = false;
     private bool clickSelect = false;
     public float moveSpeed;
@@ -22,6 +22,11 @@ public class UnitScript : MonoBehaviour
 
     private bool active = false; // ant is moving OR just selected
     private Vector2 direction;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -69,6 +74,13 @@ public class UnitScript : MonoBehaviour
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle + 90), rotationSpeed * Time.deltaTime);
+            anim.SetBool("Idle", false);
+            anim.SetBool("Move", true);       
+        }
+        else
+        {
+            anim.SetBool("Move", false);
+            anim.SetBool("Idle", true);
         }
     }
 
@@ -78,11 +90,6 @@ public class UnitScript : MonoBehaviour
         Debug.Log("Damage Applied");
         if (hitPoints <= 0)
           Destroy(this.gameObject);      
-    }
-
-    public void OnCollisionEnter2D(Collision2D col)
-    {
-        Debug.Log("Mrowka wziela zarcie!");
     }
 
     public void AddResources(int value)
@@ -107,7 +114,6 @@ public class UnitScript : MonoBehaviour
             clickSelect = true;
             selected = true;
         }
-
     }
 
     private void OnMouseUp()

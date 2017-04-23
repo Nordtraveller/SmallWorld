@@ -31,6 +31,7 @@ public class FoodScript : MonoBehaviour
             if(!unit.hasResource)
             {
                 unit.AddResources(resourcesValue);
+                unit.GetComponent<Animator>().SetTrigger("Take");
                 unit.hasResource = true;
                 unit.foodOnBack = this;
                 isTaken = true;

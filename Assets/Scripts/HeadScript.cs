@@ -25,12 +25,14 @@ public class HeadScript : MonoBehaviour {
 
     void OnCollisionStay2D(Collision2D col)
     {
+        Animator anim = this.GetComponentInParent<Animator>();
         if (col.gameObject.tag != this.tag)
         {
             UnitScript colUnitScript = col.gameObject.GetComponent<UnitScript>();
             if (attacking && colUnitScript!=null)
             {
                 Debug.Log("I attacked");
+                anim.SetTrigger("Attack");
                 GetComponent<AudioSource>().PlayOneShot(shoot);
                 colUnitScript.DecreaseHP(dmg);
                 attacking = false;
