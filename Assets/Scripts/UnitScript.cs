@@ -8,7 +8,6 @@ public class UnitScript : MonoBehaviour
 
     //public static int numberOfUnits = 0;
     public int hitPoints = 5;
-    public string team = "black";
 
     public bool selected = false;
     private bool clickSelect = false;
