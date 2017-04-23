@@ -16,8 +16,8 @@ public class DetectAndTrack : MonoBehaviour {
     void Start()
     {
         unit = gameObject.transform.parent.GetComponent<UnitScript>();
-        BaseScript[] bases = FindObjectsOfType<BaseScript>();
-        foreach (BaseScript bS in bases)
+        BaseHealthManager[] bases = FindObjectsOfType<BaseHealthManager>();
+        foreach (BaseHealthManager bS in bases)
         {
             if (bS.gameObject.tag == "Black") enemyBase = bS.gameObject;
             else if (bS.gameObject.tag == "Red") yourBase = bS.gameObject;
@@ -65,19 +65,19 @@ public class DetectAndTrack : MonoBehaviour {
     private bool isYourBase(GameObject obj)
     {
         if (obj == null) return false;
-        return obj.gameObject.tag == "Red" && obj.GetComponent<BaseScript>() != null;
+        return obj.gameObject.tag == "Red" && obj.GetComponent<BaseHealthManager>() != null;
     }
 
     private bool isEnemyBase(GameObject obj)
     {
         if (obj == null) return false;
-        return obj.gameObject.tag == "Black" && obj.GetComponent<BaseScript>()!=null;
+        return obj.gameObject.tag == "Black" && obj.GetComponent<BaseHealthManager>()!=null;
     }
 
     private bool isBase(GameObject obj)
     {
         if (obj == null) return false;
-        return obj.GetComponent<BaseScript>() != null;
+        return obj.GetComponent<BaseHealthManager>() != null;
     }
 
 }

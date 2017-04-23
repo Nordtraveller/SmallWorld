@@ -5,13 +5,18 @@ using UnityEngine;
 public class BaseScript : MonoBehaviour {
 
     public int resources = 0;
+    public int hitPoints = 100;
 
-    public static Rect resGUI = new Rect(10, 10, 50, 50);
+    public static Rect resGUI = new Rect(10, 10, 50, 50); // hehe, nie uzywam ]:->
 
     void OnGUI()
     {
-       if(gameObject.tag == "Black") GUI.Label(resGUI, resources.ToString());
+       if(gameObject.tag == "Black") GUI.Label(new Rect(10, 10, 100, 50), "Zasoby: " + resources.ToString());
+       else GUI.Label(new Rect(900, 10, 100, 50), "Zasoby: " + resources.ToString());
+        if (gameObject.tag == "Black") GUI.Label(new Rect(110, 10, 100, 50), "HP: " + hitPoints.ToString());
+        else GUI.Label(new Rect(1000, 10, 100, 50), "HP: " + hitPoints.ToString());
     }
+
 
     void OnTriggerEnter2D(Collider2D c)
     { 
@@ -27,5 +32,12 @@ public class BaseScript : MonoBehaviour {
     private void AddResources(int value)
     {
         resources += value;
+    }
+
+
+    public void TakeDamage(int strength)
+    {
+        hitPoints -= strength;
+        if (hitPoints <= 0) Destroy(gameObject.transform.parent.gameObject);
     }
 }

@@ -5,12 +5,17 @@ using UnityEngine;
 public class FoodScript : MonoBehaviour
 {
     public int resourcesValue;
-    private bool isTaken;
+    public bool isTaken;
     GameObject carrier = null;
 
     void Update()
     {
-        if (carrier == null) return;
+        if (carrier == null)
+        {
+            isTaken = false;
+            return;
+        }
+        else isTaken = true;
 
         gameObject.transform.position = carrier.transform.position;
 
@@ -18,17 +23,13 @@ public class FoodScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (isTaken) return;
-
         UnitScript unit = collider.gameObject.GetComponent<UnitScript>();
 
         bool isAnt = (unit != null);
 
-        Debug.Log(isAnt);
-
         if (isAnt)
         {
-            if(!unit.hasResource)
+            if(!unit.hasResource && !isTaken)
             {
                 unit.AddResources(resourcesValue);
                 unit.hasResource = true;

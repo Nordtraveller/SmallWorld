@@ -6,7 +6,6 @@ using UnityEngine;
 public class UnitScript : MonoBehaviour
 {
 
-    //public static int numberOfUnits = 0;
     public int hitPoints = 5;
 
     public bool selected = false;
@@ -77,7 +76,10 @@ public class UnitScript : MonoBehaviour
         hitPoints -= dmg;
         Debug.Log("Damage Applied");
         if (hitPoints <= 0)
-          Destroy(this.gameObject);      
+        {
+            Destroy(this.gameObject);
+        }
+   
     }
 
     public void OnCollisionEnter2D(Collision2D col)
@@ -88,6 +90,7 @@ public class UnitScript : MonoBehaviour
     public void AddResources(int value)
     {
         resources += value;
+        hasResource = true;
     }
 
     public int TakeResources()
