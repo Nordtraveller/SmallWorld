@@ -6,6 +6,7 @@ public class HeadScript : MonoBehaviour {
 
     public int dmg = 2;
     public bool attacking = false;
+    public AudioClip shoot;
     public float time = 1.0f;
 
     IEnumerator Start()
@@ -30,6 +31,7 @@ public class HeadScript : MonoBehaviour {
             if (attacking && colUnitScript!=null)
             {
                 Debug.Log("I attacked");
+                GetComponent<AudioSource>().PlayOneShot(shoot);
                 colUnitScript.DecreaseHP(dmg);
                 attacking = false;
             }
