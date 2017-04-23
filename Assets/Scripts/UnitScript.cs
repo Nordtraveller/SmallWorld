@@ -29,10 +29,10 @@ public class UnitScript : MonoBehaviour
         if (GetComponent<Renderer>().isVisible && Input.GetMouseButton(0))
         {
             if(!clickSelect)
-            {
+            {   
                 Vector2 camPosition = Camera.main.WorldToScreenPoint(transform.position);
                 camPosition.y = CameraScript.InvertY(camPosition.y);
-                selected = CameraScript.selection.Contains(camPosition);
+                selected = (CameraScript.selection.Contains(camPosition) && gameObject.tag == "Black");
             }
         }
 
