@@ -49,11 +49,12 @@
      <Compile Include="Assets\Scripts\BaseScript.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CameraScript.cs" />
+     <Compile Include="Assets\Scripts\DetectAndTrack.cs" />
      <Compile Include="Assets\Scripts\FoodScript.cs" />
      <Compile Include="Assets\Scripts\HeadScript.cs" />
      <Compile Include="Assets\Scripts\RandomObjectSpawner.cs" />
+     <Compile Include="Assets\Scripts\SpawnOnNiewiem.cs" />
      <Compile Include="Assets\Scripts\UnitScript.cs" />
-     <Compile Include="Assets\SpawnOnNiewiem.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

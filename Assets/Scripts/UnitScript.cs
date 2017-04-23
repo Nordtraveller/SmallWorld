@@ -119,4 +119,10 @@ public class UnitScript : MonoBehaviour
         clickSelect = false;
     } 
 
+    public void GoToPoint(Vector2 destination)
+    {
+        this.destination = destination;
+        active = true;
+    }
+
 }
